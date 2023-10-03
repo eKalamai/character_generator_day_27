@@ -1,107 +1,83 @@
-import random, os, time
+#Import libraries
+import random, time, os
 
+#Create separate subroutines
+
+#dice roll
 def dice_roll(sides):
   dice_roll = random.randint(1, sides)
   return dice_roll
 
-def six_and_twelve_roll():
-  roll_6 = dice_roll(6)
-  roll_12 = dice_roll(12)
-  dice_total = roll_6 * roll_12
-  return dice_total
-  
+#character health
+def health():
+  health_stat = int((dice_roll(6) * dice_roll(12)) / 2 + random.randint(1,15))
+  return health_stat
 
-def generate_character():
+#character strength
+def strength():
+  strength_stat = int((dice_roll(6) * dice_roll(12)) / 2 + random.randint(1,15))
+  return strength_stat
+
+#character name and character type
+def character():
+  legend_name = input("Name your Legend:\n ")
+  time.sleep(.5)
+  os.system("clear")
+  legend_type = input("What type is your legend?(Human, Elf, Wizard, Orc):\n ")
+  time.sleep(.5)
+  os.system("clear")
+  print("===LEGEND STATS===")
+  print()
+  time.sleep(.5)
+  health_stat = health()
+  strength_stat = strength()
+  print(f"Legend Name: {legend_name}")
+  print()
+  time.sleep(.5)
+  print(f"Legend Type: {legend_type}")
+  print()
+  time.sleep(.5)
+  print(f"Health: {health()} ")
+  print()
+  time.sleep(.5)
+  print(f"Strength: {strength_stat}")
+  print()
+  time.sleep(.5)
+
+#option to create up to 3 different characters
+def create_loop():
   counter = 1
-  while counter <= 3:
-    os.system("clear")
+  while counter <= 3:   
     if counter == 1:
-      dice_total = six_and_twelve_roll()
-      health = int(dice_total / 2 + 10)
-      strength = int(dice_total / 2 + 12)
-      legend_1 = input("Name your Legend:\n")
-      os.system("clear")
-      type_1 = input("Character Type (Human, Elf, Wizard, Orc):\n").capitalize()
-      os.system("clear")
-      print("LEGEND 1")
-      time.sleep(1)
-      print()
-      print(f"Legend Name: {legend_1}")
-      time.sleep(1)
-      print(f"Legend Type: {type_1}")
-      time.sleep(1)
-      print(f"Health: {health}")
-      time.sleep(1)
-      print(f"Strength: {strength}")
-      print()
-      print()
-      time.sleep(2)
-      counter += 1
-      add_character = input("Do you wish to create another character? ")
-      if add_character == "yes":
+      character()
+      create = input("Do you wish to create another legend?: ")
+      if create == "yes":
+        counter += 1
         time.sleep(1)
-    
+        os.system("clear")
         continue
       else:
         break
     elif counter == 2:
-      dice_total = six_and_twelve_roll()
-      health = int(dice_total / 2 + 10)
-      strength = int(dice_total / 2 + 12)
-      legend_2 = input("Name your Legend:\n")
-      os.system("clear")
-      type_2 = input("Character Type (Human, Elf, Wizard, Orc):\n").capitalize()
-      os.system("clear")
-      print("LEGEND 2")
-      time.sleep(1)
-      print()
-      print(f"Legend Name: {legend_2}")
-      time.sleep(1)
-      print(f"Legend Type: {type_2}")
-      time.sleep(1)
-      print(f"Health: {health}")
-      time.sleep(1)
-      print(f"Strength: {strength}")
-      print()
-      print()
-      time.sleep(2)
-      counter += 1
-      add_character = input("Do you wish to create another character? ")
-      if add_character == "yes":
-        print()
+      character()
+      create = input("Do you wish to create another legend?: ")
+      if create == "yes":
+        counter += 1
+        time.sleep(1)
+        os.system("clear")
         continue
       else:
-        break 
+        break
     elif counter == 3:
-      dice_total = six_and_twelve_roll()
-      health = int(dice_total / 2 + 10)
-      strength = int(dice_total / 2 + 12)
-      legend_3 = input("Name your Legend:\n")
-      os.system("clear")
-      type_3 = input("Character Type (Human, Elf, Wizard, Orc):\n").capitalize()
-      os.system("clear")
-      print("LEGEND 3")
-      time.sleep(1)
-      print()
-      print(f"Legend Name: {legend_3}")
-      time.sleep(1)
-      print(f"Legend Type: {type_3}")
-      time.sleep(1)
-      print(f"Health: {health}")
-      time.sleep(1)
-      print(f"Strength: {strength}")
-      print()
-      print()
+      character()
       time.sleep(2)
-      break
-   
-
-
-#run character generator
-
-print("+++---CHARACTER GENERATOR---+++")
+      counter += 1
+      
+#character generator program
+print("Welcome to the Character Generator")
 time.sleep(2)
-generate_character()
-time.sleep(1)
 os.system("clear")
-print("Good luck on your adventures!")
+create_loop()
+time.sleep(.5)
+os.system("clear")
+print("!!!Best of luck on your quest for glory!!!")
